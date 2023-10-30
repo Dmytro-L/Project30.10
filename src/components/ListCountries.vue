@@ -51,27 +51,25 @@
     <Column field="population" header="Population"></Column>
     <Column header="Language">
       <template #body="slotProps">
-        <div v-if="slotProps.data.languages">
-          <div v-if="Object.keys(slotProps.data.languages).length <= 1">
-            <Chip :label="Object.values(slotProps.data.languages)[0]" />
-          </div>
-          <div v-if="Object.keys(slotProps.data.languages).length > 1">
-            <Chip
-              :style="'cursor:pointer'"
-              type="button"
-              icon="pi pi-image"
-              label="More"
-              @click="openChip"
-            />
+        <div v-if="Object.keys(slotProps.data.languages).length <= 1">
+          <Chip :label="Object.values(slotProps.data.languages)[0]" />
+        </div>
+        <div v-if="Object.keys(slotProps.data.languages).length > 1">
+          <Chip
+            :style="'cursor:pointer'"
+            type="button"
+            icon="pi pi-image"
+            label="More"
+            @click="openChip"
+          />
 
-            <OverlayPanel ref="op">
-              <Chip
-                v-for="language in slotProps.data.languages"
-                :key="language"
-                :label="language"
-              />
-            </OverlayPanel>
-          </div>
+          <OverlayPanel ref="op">
+            <Chip
+              v-for="language in slotProps.data.languages"
+              :key="language"
+              :label="language"
+            />
+          </OverlayPanel>
         </div>
       </template>
     </Column>
@@ -105,9 +103,7 @@ export default {
     });
     const op = ref();
     const openChip = (event) => {
-      // if (op.value !== null) {
-        op.value.toggle(event);
-      // }
+      op.value.toggle(event);
     };
 
     const initFilters = () => {
@@ -130,7 +126,7 @@ export default {
 
     const getPosts = async () => {
       try {
-        const response = await axios.get("https://restcountries.com/v3.1/all");
+        const response = await axios.get("http://localhost:8080/api/all");
         posts.value = response.data;
       } catch (error) {
         console.error("Помилка отримання даних:", error);
