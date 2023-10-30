@@ -18,7 +18,9 @@
         />
       </div>
     </template>
-    <template #empty> No customers found. </template>
+    <template #empty> 
+      <ProgressSpinner />
+    </template>
     <Column :style="'width: 10%'" field="flag" header="Flag"></Column>
     <Column field="name.official" header="Name">
       <template #body="{ data }">
@@ -77,6 +79,7 @@
 </template>
 
 <script>
+import ProgressSpinner from 'primevue/progressspinner';
 import DataTable from "primevue/datatable";
 import OverlayPanel from "primevue/overlaypanel";
 import Column from "primevue/column";
@@ -93,6 +96,7 @@ export default {
     Chip,
     InputText,
     OverlayPanel,
+    ProgressSpinner,
   },
   setup() {
     const posts = ref([]);
@@ -148,4 +152,8 @@ export default {
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.p-datatable-emptymessage td{
+  text-align: center;
+}
+</style>
