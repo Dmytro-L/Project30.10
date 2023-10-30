@@ -104,7 +104,9 @@ export default {
     });
     const op = ref();
     const toggle = (event) => {
-      op.value.toggle(event);
+      if (op.value !== null) {
+        op.value.toggle(event);
+      }
     };
 
     const initFilters = () => {
