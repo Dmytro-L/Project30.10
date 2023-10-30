@@ -51,25 +51,27 @@
     <Column field="population" header="Population"></Column>
     <Column header="Language">
       <template #body="slotProps">
-        <div v-if="Object.keys(slotProps.data.languages).length <= 1">
-          <Chip :label="Object.values(slotProps.data.languages)[0]" />
-        </div>
-        <div v-if="Object.keys(slotProps.data.languages).length > 1">
-          <Chip
-            :style="'cursor:pointer'"
-            type="button"
-            icon="pi pi-image"
-            label="More"
-            @click="openChip"
-          />
-
-          <OverlayPanel ref="op">
+        <div v-if="slotProps.data.languages">
+          <div v-if="Object.keys(slotProps.data.languages).length <= 1">
+            <Chip :label="Object.values(slotProps.data.languages)[0]" />
+          </div>
+          <div v-if="Object.keys(slotProps.data.languages).length > 1">
             <Chip
-              v-for="language in slotProps.data.languages"
-              :key="language"
-              :label="language"
+              :style="'cursor:pointer'"
+              type="button"
+              icon="pi pi-image"
+              label="More"
+              @click="openChip"
             />
-          </OverlayPanel>
+
+            <OverlayPanel ref="op">
+              <Chip
+                v-for="language in slotProps.data.languages"
+                :key="language"
+                :label="language"
+              />
+            </OverlayPanel>
+          </div>
         </div>
       </template>
     </Column>
