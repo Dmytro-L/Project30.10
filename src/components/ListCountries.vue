@@ -60,7 +60,7 @@
             type="button"
             icon="pi pi-image"
             label="More"
-            @click="toggle"
+            @click="openChip"
           />
 
           <OverlayPanel ref="op">
@@ -79,7 +79,6 @@
 <script>
 import DataTable from "primevue/datatable";
 import OverlayPanel from "primevue/overlaypanel";
-// import Button from 'primevue/button';
 import Column from "primevue/column";
 import Chip from "primevue/chip";
 import InputText from "primevue/inputtext";
@@ -103,10 +102,10 @@ export default {
       region: { value: null },
     });
     const op = ref();
-    const toggle = (event) => {
-      if (op.value !== null) {
+    const openChip = (event) => {
+      // if (op.value !== null) {
         op.value.toggle(event);
-      }
+      // }
     };
 
     const initFilters = () => {
@@ -145,7 +144,7 @@ export default {
     return {
       posts,
       filters,
-      toggle,
+      openChip,
       op,
     };
   },
